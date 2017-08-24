@@ -115,9 +115,12 @@ def processMedlineFolder(medlineFolder,outFolder):
 	# Filter for only XML files
 	files = [ f for f in files if f.endswith('xml') ]
 
+	# Sort the files so it's easier to see
+	files = sorted(files)
+
 	# Iterate over all files
-	for f in files:
-		print "Processing %s" % f
+	for i,f in enumerate(files):
+		print "Processing %s (%d/%d)" % (f,(i+1),len(files))
 		fullInPath = os.path.join(medlineFolder,f)
 		fullOutPath = os.path.join(outFolder,f.replace('.xml','.txt'))
 
