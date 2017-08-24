@@ -42,7 +42,7 @@ echo "Converting Pubmed XML files to raw text"
 echo "#####################"
 rm -fr $TMP_TXT_DIR
 mkdir $TMP_TXT_DIR
-python $HERE/PubMed2Txt.py -i $MEDLINE_DIR -o $TMP_TXT_DIR
+time python $HERE/PubMed2Txt.py -i $MEDLINE_DIR -o $TMP_TXT_DIR
 
 echo
 echo "#####################"
