@@ -147,6 +147,9 @@ def processMedlineFolder(medlineFolder,outFolder):
 					outF.write("".join(allText))
 					abstractCount += 1
 
+					# Important: clear the current element from memory to keep memory usage low
+					elem.clear()
+
 	print "%d abstracts processed" % abstractCount
 
 if __name__ == '__main__':
