@@ -4,8 +4,8 @@ import os
 from os import listdir
 from os.path import isfile, join
 import codecs
-import HTMLParser
 import re
+from six.moves import html_parser
 
 # Remove empty brackets (that could happen if the contents have been removed already
 # e.g. for citation ( [3] [4] ) -> ( ) -> nothing
@@ -24,7 +24,7 @@ def removeWeirdBracketsFromOldTitles(titleText):
 	return titleText
 
 # Unescape HTML special characters e.g. &gt; is changed to >
-htmlParser = HTMLParser.HTMLParser()
+htmlParser = html_parser.HTMLParser()
 def htmlUnescape(text):
 	return htmlParser.unescape(text)
 
@@ -120,7 +120,7 @@ def processMedlineFolder(medlineFolder,outFolder):
 
 	# Iterate over all files
 	for i,f in enumerate(files):
-		print "Processing %s (%d/%d)" % (f,(i+1),len(files))
+		print("Processing %s (%d/%d)" % (f,(i+1),len(files)))
 		fullInPath = os.path.join(medlineFolder,f)
 		fullOutPath = os.path.join(outFolder,f.replace('.xml','.txt'))
 
@@ -153,7 +153,7 @@ def processMedlineFolder(medlineFolder,outFolder):
 					# Important: clear the current element from memory to keep memory usage low
 					elem.clear()
 
-	print "%d abstracts processed" % abstractCount
+	print("%d abstracts processed" % abstractCount)
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Script that takes in a set of Pubmed XML files, extracts the title and abstracts and converts them to TXT files')

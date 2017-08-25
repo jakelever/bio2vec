@@ -1,18 +1,49 @@
 #!/bin/bash
-set -euo pipefail
+set -eo pipefail
 
-USAGE="$0 MEDLINE_DIR OUT_VECTOR\n  MEDLINE_DIR: Directory with MEDLINE XML files\n  OUT_VECTOR: Filename to save word2vec vector\n"
-if [[ $# -ne 2 ]]; then
-	echo -e $USAGE
-	exit 1
-elif [ ! -d $1 ]; then
-	echo -e $USAGE
-	echo "ERROR: MEDLINE_DIR must be a directory"
-	exit 1
+usage() {
+	echo "$0 -i <MEDLINE_DIR> -o <OUT_VECTOR>"
+	echo "  MEDLINE_DIR: Directory with MEDLINE XML files"
+	echo "  OUT_VECTOR: Filename to save word2vec vector"
+	echo
+}
+
+while [[ $# > 0 ]]
+do
+	key="$1"
+
+	case $key in
+		-h|--help)
+		usage
+		exit 0
+		;;
+		-i)
+		MEDLINE_DIR="$2"
+		shift # past argument
+		;;
+		-o)
+		OUT_VECTOR="$2"
+		shift # past argument
+		;;
+		*)
+		echo "Unknown parameters: $key"
+		exit 255
+		;;
+	esac
+	
+	if [[ $# > 0 ]]; then
+		shift # past argument or value
+	fi
+done
+
+if [ -z "$MEDLINE_DIR" ]; then
+	echo "ERROR: -i <MEDLINE_DIR> must be set" >&2; usage; exit 255
+elif [ -z "$OUT_VECTOR" ]; then
+	echo "ERROR: -o <OUT_VECTOR> must be set" >&2; usage; exit 255
+elif [ ! -d $MEDLINE_DIR ]; then
+	echo "ERROR: <MEDLINE_DIR> must be a directory" >&2; usage; exit 255
 fi
 
-MEDLINE_DIR=$1
-OUT_VECTOR=$2
 TMP_TXT_DIR=tmp.medline.parts
 
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
