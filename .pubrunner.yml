@@ -1,0 +1,8 @@
+#dependencies:
+#  - Here would go dependencies or some such?
+mini:
+   - corpus: onefile
+run:
+   - bash run.sh -i PUBMED -o OUTPUTDIR
+output:
+   - OUTPUTDIR
