@@ -1,0 +1,7 @@
+sudo: required
+language: python
+os: linux
+install:
+  - pip install pubrunner
+script:
+  - pubrunner
