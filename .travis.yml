@@ -4,4 +4,4 @@ os: linux
 install:
   - pip install pubrunner
 script:
-  - pubrunner
+  - pubrunner mini
