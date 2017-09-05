@@ -47,25 +47,8 @@ fi
 TMP_TXT_DIR=tmp.medline.parts
 
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-SRC_DIR=word2vec/src
 BIN_DIR=word2vec/bin
 TEXT_DATA=tmp.medline.txt
-WORD2VEC_REPO=https://github.com/jakelever/word2vec.git
-
-echo
-echo "#####################"
-echo "Cloning word2vec repo ($WORD2VEC_REPO)"
-echo "#####################"
-rm -fr word2vec
-git clone $WORD2VEC_REPO
-
-echo
-echo "#####################"
-echo "Building word2vec"
-echo "#####################"
-cd $SRC_DIR
-make
-cd -
 
 echo
 echo "#####################"
@@ -99,3 +82,4 @@ echo
 echo "#####################"
 echo "Complete. Vectors stored at $OUT_VECTOR"
 echo "#####################"
+
