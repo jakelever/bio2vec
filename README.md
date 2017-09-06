@@ -1,6 +1,6 @@
 # Word Vectors for the Biomedical Domain
 
-This is a small repo with scripts that install word2vec, convert PubMed XML files to raw text and runs word2vec. This is http://bio.nlplab.org resources for biomedical text mining
+This is a small repo with scripts that install word2vec, convert PubMed XML files to raw text and runs word2vec. This is a reimplementation of work done by researchers for http://bio.nlplab.org.
 
 ## Usage
 
