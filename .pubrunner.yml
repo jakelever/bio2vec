@@ -1,5 +1,5 @@
-#dependencies:
-#  - Here would go dependencies or some such?
+settings:
+   - mode: complete # Run the entire Pubmed dataset, not just the incremental set
 testdata:
    - PUBMED_SINGLEFILE
 rundata:
